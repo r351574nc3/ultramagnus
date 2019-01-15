@@ -1,0 +1,2 @@
+# ultramagnus
+Hubot implementation
