@@ -156,8 +156,8 @@ go_repository(
 go_repository(
     name = "com_github_stretchr_testify",
     importpath = "github.com/stretchr/testify",
-    sum = "h1:2E4SXV/wtOkTonXsotYi4li6zVWxYlZuYNCXe9XRJyk=",
-    version = "v1.4.0",
+    sum = "h1:bSDNvY7ZPG5RlJ8otE/7V6gMiyenm9RtJ7IUVIAoJ1w=",
+    version = "v1.2.2",
 )
 
 go_repository(
@@ -165,6 +165,30 @@ go_repository(
     importpath = "github.com/ugorji/go/codec",
     sum = "h1:2SvQaVZ1ouYrrKKwoSk2pzd4A9evlKJb9oTL+OaLUSs=",
     version = "v1.1.7",
+)
+
+go_repository(
+    name = "com_github_go_joe_joe",
+    importpath = "github.com/go-joe/joe",
+    commit = "dda40de04c988afe9ed722c831af1f6aad1c148d",
+)
+
+go_repository(
+    name = "com_github_robertgzr_joe_bolt_memory",
+    importpath = "github.com/robertgzr/joe-bolt-memory",
+    commit = "94641d20553a931bd81d31454a5df6af21a67c39",
+)
+
+go_repository(
+    name = "com_github_go_joe_slack_adapter",
+    importpath = "github.com/go-joe/slack-adapter",
+    commit = "1badced2e92f699fb13eabadebf0bf4cc0496968",
+)
+
+go_repository(
+    name = "com_github_nlopes_slack",
+    importpath = "github.com/nlopes/slack",
+    commit = "1af34b6bda3d43878255fff7bd2884ea0c23295e",
 )
 
 go_repository(
@@ -177,8 +201,8 @@ go_repository(
 go_repository(
     name = "org_golang_x_sys",
     importpath = "golang.org/x/sys",
-    sum = "h1:vEOn+mP2zCOVzKckCZy6YsCtDblrpj/w7B9nxGNELpg=",
-    version = "v0.0.0-20200116001909-b77594299b42",
+    sum = "h1:b3JiLYVaG9kHjTcOQIoUh978YMCO7oVTQQBLudU47zY=",
+    version = "v0.0.0-20190907184412-d223b2b6db03",
 )
 
 go_repository(
@@ -193,4 +217,52 @@ go_repository(
     importpath = "golang.org/x/tools",
     sum = "h1:FDhOuMEY4JVRztM/gsbk+IKUQ8kj74bxZrgw87eMMVc=",
     version = "v0.0.0-20180917221912-90fa682c2a6e",
+)
+
+go_repository(
+    name = "com_github_pkg_errors",
+    importpath = "github.com/pkg/errors",
+    sum = "h1:iURUrRGxPUNPdy5/HRSm+Yj6okJ6UtLINN0Q9M4+h3I=",
+    version = "v0.8.1",
+)
+
+go_repository(
+    name = "io_etcd_go_bbolt",
+    importpath = "go.etcd.io/bbolt",
+    sum = "h1:MUGmc65QhB3pIlaQ5bB4LwqSj6GIonVJXpZiaKNyaKk=",
+    version = "v1.3.3",
+)
+
+go_repository(
+    name = "org_uber_go_atomic",
+    importpath = "go.uber.org/atomic",
+    sum = "h1:2Oa65PReHzfn29GpvgsYwloV9AVFHPDk8tYxt2c2tr4=",
+    version = "v1.3.2",
+)
+
+go_repository(
+    name = "org_uber_go_multierr",
+    importpath = "go.uber.org/multierr",
+    sum = "h1:HoEmRHQPVSqub6w2z2d2EOVs2fjyFRGyofhKuyDq0QI=",
+    version = "v1.1.0",
+)
+
+go_repository(
+    name = "org_uber_go_zap",
+    importpath = "go.uber.org/zap",
+    sum = "h1:ORx85nbTijNz8ljznvCMR1ZBIPKFn3jQrag10X2AsuM=",
+    version = "v1.10.0",
+)
+
+go_repository(
+    name = "com_github_gorilla_websocket",
+    importpath = "github.com/gorilla/websocket",
+    sum = "h1:VJtLvh6VQym50czpZzx07z/kw9EgAxI3x1ZB8taTMQQ=",
+    version = "v1.2.0",
+)
+
+go_repository(
+    name = "com_github_sirupsen_logrus",
+    importpath = "github.com/sirupsen/logrus",
+    commit = "d417be0fe654de640a82370515129985b407c7e3",
 )

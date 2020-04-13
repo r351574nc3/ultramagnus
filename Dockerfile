@@ -1,3 +1,25 @@
-FROM r351574nc3/bazel-onbuild:latest 
+FROM r351574nc3/bazel-onbuild:latest as builder
 
-CMD ["./.output/execroot/__main__/bazel-out/k8-fastbuild/bin/application"]
+FROM debian:stretch
+
+ENV GIN_MODE=release\
+    DB_PATH=/opt/lib/ultramagnus/bolt.db\
+    SLACK_TOKEN=token
+
+RUN apt-get update \
+    && apt-get install -y ca-certificates \
+    && apt-get clean
+
+WORKDIR /opt
+
+RUN mkdir -p /opt/bin \
+    && mkdir -p /opt/lib/ultramagnus \
+    && chmod -R 755 /opt/bin \
+    && chmod -R 755 /opt/lib/ultramagnus 
+
+COPY --from=builder /bazel/.output/execroot/__main__/bazel-out/k8-fastbuild/bin/application /opt/bin/ultramagnus
+
+EXPOSE "3001"
+EXPOSE "8080"
+
+CMD ["/opt/bin/ultramagnus"]
