@@ -4,7 +4,8 @@ FROM debian:stretch
 
 ENV GIN_MODE=release\
     DB_PATH=/opt/lib/ultramagnus/bolt.db\
-    SLACK_TOKEN=token
+    SLACK_TOKEN=token\
+    HTTP_CONFIG=":8080"
 
 RUN apt-get update \
     && apt-get install -y ca-certificates \
@@ -18,8 +19,5 @@ RUN mkdir -p /opt/bin \
     && chmod -R 755 /opt/lib/ultramagnus 
 
 COPY --from=builder /bazel/.output/execroot/__main__/bazel-out/k8-fastbuild/bin/application /opt/bin/ultramagnus
-
-EXPOSE "3001"
-EXPOSE "8080"
 
 CMD ["/opt/bin/ultramagnus"]

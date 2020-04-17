@@ -31,6 +31,24 @@ func (c *Config) New() *Config {
 		c = new(Config)
 	}
 	c.SlackToken = os.Getenv(SLACK_TOKEN)
+	c.SigningSecret = os.Getenv(SLACK_SIGNING_SECRET)
 	c.DbPath = os.Getenv(DB_PATH)
+	c.HttpConfig = os.Getenv(HTTP_CONFIG)
 	return c
 }
+
+func (h *BotHandlers) New() *BotHandlers {
+	if h == nil {
+		h = new(BotHandlers)
+	}
+
+	return h
+}
+
+func (r *WebhookResponse) New() *WebhookResponse {
+	if r == nil {
+		return new(WebhookResponse)
+	}
+	return r
+}
+

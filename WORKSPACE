@@ -192,6 +192,12 @@ go_repository(
 )
 
 go_repository(
+    name = "com_github_slack_go_slack",
+    importpath = "github.com/slack-go/slack",
+    commit = "5b8bbb1b1ad5bfa1531ee0bd7a0cfbfa801de7fe",
+)
+
+go_repository(
     name = "in_gopkg_check_v1",
     importpath = "gopkg.in/check.v1",
     sum = "h1:yhCVgyC4o1eVCa2tZl7eS0r+SDo693bJlVdllGtEeKM=",

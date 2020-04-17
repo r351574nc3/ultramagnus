@@ -6,30 +6,37 @@ import (
 )
 
 var (
-	response	*HealthResponse
 	config      *bot.Config
 )
 
 func createRouter() *gin.Engine {
 	r := gin.Default()
+	var response *HealthResponse
+
 
 	// Get total hours for cases value
 	r.GET("/healthcheck", func(c *gin.Context) {
-		response := response.New()
+		response = response.New()
 		c.JSON(200, response)
 	})
+
+	r.POST("/motd", bot.SlackHandlers.Motd)
 	return r
 }
 
-func main() {
+func StartHttp(httpConfig string) {
 	r := createRouter()
-	bot.Setup(config.New())
+	go r.Run(httpConfig)	
+}
+
+func main() {
+	config = config.New()
+	bot.Setup(config)
+	go StartHttp(config.HttpConfig)
 
 	b := bot.Ultramagnus.Joe
 	err := b.Run()
 	if err != nil {
 		b.Logger.Fatal(err.Error())
 	}
-
-	r.Run(":8080")
 }
