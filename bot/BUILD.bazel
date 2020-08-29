@@ -1,4 +1,4 @@
-load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library")
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
 
 go_library(
     name = "go_default_library",
@@ -6,17 +6,16 @@ go_library(
         "bot.go",
         "methods.go",
         "slash.go",
-        "types.go"
-    ],
-    deps = [
-        "@com_github_gin_gonic_gin//:go_default_library",
-        "@com_github_robertgzr_joe_bolt_memory//:go_default_library",
-        "@com_github_go_joe_joe//:go_default_library",
-        "@com_github_go_joe_slack_adapter//:go_default_library",
-        "@org_uber_go_zap//:go_default_library",
-        "@com_github_slack_go_slack//:go_default_library",
-        "@com_github_nlopes_slack//:go_default_library",
+        "types.go",
     ],
     importpath = "github.com/r351574nc3/ultramagnus/bot",
     visibility = ["//visibility:public"],
+    deps = [
+        "@com_github_gin_gonic_gin//:go_default_library",
+        "@com_github_go_joe_joe//:go_default_library",
+        "@com_github_go_joe_slack_adapter//:go_default_library",
+        "@com_github_nlopes_slack//:go_default_library",
+        "@com_github_robertgzr_joe_bolt_memory//:go_default_library",
+        "@org_uber_go_zap//:go_default_library",
+    ],
 )

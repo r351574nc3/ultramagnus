@@ -13,6 +13,7 @@ genrule(
     local = 1,
 )
 
+# gazelle:prefix github.com/r351574nc3/ultramagnus
 gazelle(
     name = "gazelle",
     prefix = "github.com/r351574nc3/ultramagnus",

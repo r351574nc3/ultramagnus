@@ -1,11 +1,14 @@
 package bot
 
 import (
+	"encoding/json"
+	"fmt"
 	"os"
 	"github.com/go-joe/joe"
 	"github.com/go-joe/slack-adapter"
 	slackClient "github.com/nlopes/slack"
 	"github.com/robertgzr/joe-bolt-memory"
+	"go.uber.org/zap"
 )
 
 func (b *ChatBot) New() *ChatBot {
@@ -20,20 +23,35 @@ func (b *ChatBot) Init(c *Config) {
 	b.Joe = joe.New(
 		"ultramagnus",
 		bolt.Memory(c.DbPath),
-		slack.Adapter(c.SlackToken),
+		slack.Adapter(c.Slack.AccessToken),
 	)
-	b.Slack = slackClient.New(c.SlackToken)
+	b.Slack = slackClient.New(c.Slack.AccessToken)
+}
+
+func (b *ChatBot) Logger() *zap.Logger {
+	if b.logger == nil {
+		logger, _ := zap.NewProduction()
+		b.logger = logger
+		defer b.logger.Sync()
+	}
+	return b.logger
 }
 
 
 func (c *Config) New() *Config {
 	if c == nil {
 		c = new(Config)
+		c.Slack = new(SlackConfig)
 	}
-	c.SlackToken = os.Getenv(SLACK_TOKEN)
-	c.SigningSecret = os.Getenv(SLACK_SIGNING_SECRET)
+	secrets := []byte(os.Getenv(SLACK_SECRETS))
+	err := json.Unmarshal(secrets, c.Slack)
+	if err != nil {
+		fmt.Println("error:", err)
+	}
+	fmt.Printf("%+v", c.Slack)
 	c.DbPath = os.Getenv(DB_PATH)
 	c.HttpConfig = os.Getenv(HTTP_CONFIG)
+
 	return c
 }
 
@@ -42,13 +60,17 @@ func (h *BotHandlers) New() *BotHandlers {
 		h = new(BotHandlers)
 	}
 
+	h.Motd = motd
+
 	return h
 }
 
-func (r *WebhookResponse) New() *WebhookResponse {
+func (r *WebhookResponse) New(message string) *WebhookResponse {
 	if r == nil {
-		return new(WebhookResponse)
+		r = new(WebhookResponse)
 	}
+
+	r.Buffer = message
 	return r
 }
 

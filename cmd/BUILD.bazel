@@ -5,20 +5,18 @@ go_library(
     srcs = [
         "main.go",
         "methods.go",
-        "types.go"
-    ],
-    deps = [
-        "//bot:go_default_library",
-        "@com_github_gin_gonic_gin//:go_default_library",
-        "@org_uber_go_zap//:go_default_library",
+        "types.go",
     ],
     importpath = "github.com/r351574nc3/ultramagnus/cmd",
     visibility = ["//visibility:private"],
+    deps = [
+        "//bot:go_default_library",
+        "@com_github_gin_gonic_gin//:go_default_library",
+    ],
 )
 
 go_binary(
     name = "server",
     embed = [":go_default_library"],
-    deps = [],
     visibility = ["//visibility:public"],
 )

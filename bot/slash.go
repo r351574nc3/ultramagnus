@@ -18,8 +18,19 @@ func motd(c *gin.Context) {
 	var (
 		response *WebhookResponse
 	)
-	response = response.New()
-	c.JSON(200, response)
+	response = response.New(
+		`This is the message of the day. Here we will get a briefing of what's happening concerning the project. Things it will include are:
+* Who's on support.
+* What's hot right now. (What's being worked on like stories, issues, or conversations).
+* Reminders
+* PRs that need looking at
+* Stories that have spent an excessive amount of time in the bucket
+* Low hanging fruit`,
+	)
+	c.String(200, response.Buffer)
+
+
+
 
 	/*
 	verifier, err := slack.NewSecretsVerifier(r.Header, signingSecret)
